@@ -15,7 +15,7 @@ const [, finalSchool, finalNote] = resume.education[0]
 const finalEducation = `${finalSchool} ${finalNote.replace(/\s*\(.*\)$/, "")}`
 
 const SECTIONS = [
-  { id: "tech", label: "역량 · 기술 스택", shortLabel: "역량 · 스킬", Component: TechStackTab },
+  { id: "tech", label: "기술 스택", Component: TechStackTab },
   { id: "career", label: "경력", Component: CareerTab },
   { id: "projects", label: "프로젝트", Component: ProjectsTab },
   { id: "portfolio", label: "포트폴리오", Component: PortfolioTab },
@@ -110,20 +110,7 @@ function Hero() {
 function TechStackTab() {
   return (
     <div>
-      <SectionTitle>역량 · 기술 스택</SectionTitle>
-
-      <h3 className="m-0 mb-4 text-title text-foreground">핵심 역량</h3>
-      <div className="mb-10 flex flex-col gap-5">
-        {resume.summary.map(([name, desc, projects]) => (
-          <div key={name}>
-            <p className="m-0 text-body-sm font-bold text-foreground">{name}</p>
-            <p className="m-0 text-body-sm text-foreground">{desc}</p>
-            <p className="m-0 text-caption text-muted-foreground">{projects}</p>
-          </div>
-        ))}
-      </div>
-
-      <h3 className="m-0 mb-4 text-title text-foreground">기술 스택</h3>
+      <SectionTitle>기술 스택</SectionTitle>
       <dl className="m-0 flex flex-col gap-3 text-body-sm">
         {resume.techStack.map(([label, chips]) => (
           <div
@@ -151,7 +138,7 @@ function CareerTab() {
         {resume.careers.map((career, index) => (
           <div
             key={career.org}
-            className="grid grid-cols-[200px_1fr] gap-8 border-b border-border pb-12 last:border-0 last:pb-0 max-md:grid-cols-1 max-md:gap-3"
+            className="flex flex-col gap-5 border-b border-border pb-12 last:border-0 last:pb-0"
           >
             <div>
               <p className="m-0 text-title text-foreground">{career.org}</p>
@@ -391,10 +378,7 @@ function Resume() {
                 : "border-transparent text-muted-foreground hover:text-foreground",
             )}
           >
-            <span className="max-sm:hidden">{section.label}</span>
-            <span className="sm:hidden">
-              {"shortLabel" in section ? section.shortLabel : section.label}
-            </span>
+            {section.label}
           </a>
         ))}
       </nav>
@@ -404,7 +388,10 @@ function Resume() {
           <section
             key={id}
             id={id}
-            className={cn("scroll-mt-[calc(var(--header-height)+3.5rem)]", index > 0 && "mt-14")}
+            className={cn(
+              "scroll-mt-[calc(var(--header-height)+3.5rem)]",
+              index > 0 && "mt-16 border-t border-border pt-16 max-md:mt-12 max-md:pt-12",
+            )}
           >
             <Component />
           </section>
