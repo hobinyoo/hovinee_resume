@@ -24,7 +24,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
         content: "width=device-width, initial-scale=1",
       },
       {
-        title: "기술 블로그",
+        title: "허선주 이력서·포트폴리오",
       },
     ],
     links: [
@@ -39,7 +39,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="ko" suppressHydrationWarning>
       <head>
         {/* biome-ignore lint/security/noDangerouslySetInnerHtml: 하드코딩된 상수 문자열이라 XSS 위험 없음 — 테마 깜빡임 방지용 초기화 스크립트 */}
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />

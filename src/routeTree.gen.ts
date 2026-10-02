@@ -15,6 +15,8 @@ import { Route as BlogRouteImport } from './routes/blog'
 import { Route as PortfolioRouteImport } from './routes/portfolio'
 import { Route as ResumeRouteImport } from './routes/resume'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
+import { Route as PortfolioIndexRouteImport } from './routes/portfolio.index'
+import { Route as PortfolioIdRouteImport } from './routes/portfolio.$id'
 import { Route as BlogPostsSplatRouteImport } from './routes/blog.posts.$'
 
 const IndexRoute = IndexRouteImport.update({
@@ -47,6 +49,16 @@ const BlogIndexRoute = BlogIndexRouteImport.update({
   path: '/',
   getParentRoute: () => BlogRoute,
 } as any)
+const PortfolioIndexRoute = PortfolioIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => PortfolioRoute,
+} as any)
+const PortfolioIdRoute = PortfolioIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => PortfolioRoute,
+} as any)
 const BlogPostsSplatRoute = BlogPostsSplatRouteImport.update({
   id: '/posts/$',
   path: '/posts/$',
@@ -57,17 +69,20 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/blog': typeof BlogRouteWithChildren
-  '/portfolio': typeof PortfolioRoute
+  '/portfolio': typeof PortfolioRouteWithChildren
   '/resume': typeof ResumeRoute
+  '/portfolio/$id': typeof PortfolioIdRoute
   '/blog/': typeof BlogIndexRoute
+  '/portfolio/': typeof PortfolioIndexRoute
   '/blog/posts/$': typeof BlogPostsSplatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/portfolio': typeof PortfolioRoute
   '/resume': typeof ResumeRoute
+  '/portfolio/$id': typeof PortfolioIdRoute
   '/blog': typeof BlogIndexRoute
+  '/portfolio': typeof PortfolioIndexRoute
   '/blog/posts/$': typeof BlogPostsSplatRoute
 }
 export interface FileRoutesById {
@@ -75,9 +90,11 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/blog': typeof BlogRouteWithChildren
-  '/portfolio': typeof PortfolioRoute
+  '/portfolio': typeof PortfolioRouteWithChildren
   '/resume': typeof ResumeRoute
+  '/portfolio/$id': typeof PortfolioIdRoute
   '/blog/': typeof BlogIndexRoute
+  '/portfolio/': typeof PortfolioIndexRoute
   '/blog/posts/$': typeof BlogPostsSplatRoute
 }
 export interface FileRouteTypes {
@@ -88,10 +105,19 @@ export interface FileRouteTypes {
     | '/blog'
     | '/portfolio'
     | '/resume'
+    | '/portfolio/$id'
     | '/blog/'
+    | '/portfolio/'
     | '/blog/posts/$'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/portfolio' | '/resume' | '/blog' | '/blog/posts/$'
+  to:
+    | '/'
+    | '/about'
+    | '/resume'
+    | '/portfolio/$id'
+    | '/blog'
+    | '/portfolio'
+    | '/blog/posts/$'
   id:
     | '__root__'
     | '/'
@@ -99,7 +125,9 @@ export interface FileRouteTypes {
     | '/blog'
     | '/portfolio'
     | '/resume'
+    | '/portfolio/$id'
     | '/blog/'
+    | '/portfolio/'
     | '/blog/posts/$'
   fileRoutesById: FileRoutesById
 }
@@ -107,7 +135,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   BlogRoute: typeof BlogRouteWithChildren
-  PortfolioRoute: typeof PortfolioRoute
+  PortfolioRoute: typeof PortfolioRouteWithChildren
   ResumeRoute: typeof ResumeRoute
 }
 
@@ -155,6 +183,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogIndexRouteImport
       parentRoute: typeof BlogRoute
     }
+    '/portfolio/': {
+      id: '/portfolio/'
+      path: '/'
+      fullPath: '/portfolio/'
+      preLoaderRoute: typeof PortfolioIndexRouteImport
+      parentRoute: typeof PortfolioRoute
+    }
+    '/portfolio/$id': {
+      id: '/portfolio/$id'
+      path: '/$id'
+      fullPath: '/portfolio/$id'
+      preLoaderRoute: typeof PortfolioIdRouteImport
+      parentRoute: typeof PortfolioRoute
+    }
     '/blog/posts/$': {
       id: '/blog/posts/$'
       path: '/posts/$'
@@ -177,11 +219,25 @@ const BlogRouteChildren: BlogRouteChildren = {
 
 const BlogRouteWithChildren = BlogRoute._addFileChildren(BlogRouteChildren)
 
+interface PortfolioRouteChildren {
+  PortfolioIdRoute: typeof PortfolioIdRoute
+  PortfolioIndexRoute: typeof PortfolioIndexRoute
+}
+
+const PortfolioRouteChildren: PortfolioRouteChildren = {
+  PortfolioIdRoute: PortfolioIdRoute,
+  PortfolioIndexRoute: PortfolioIndexRoute,
+}
+
+const PortfolioRouteWithChildren = PortfolioRoute._addFileChildren(
+  PortfolioRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   BlogRoute: BlogRouteWithChildren,
-  PortfolioRoute: PortfolioRoute,
+  PortfolioRoute: PortfolioRouteWithChildren,
   ResumeRoute: ResumeRoute,
 }
 export const routeTree = rootRouteImport
