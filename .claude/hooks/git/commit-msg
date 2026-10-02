@@ -1,0 +1,43 @@
+#!/bin/bash
+# commit-msg — 커밋 메시지 컨벤션 검사 (git 훅)
+#
+# 설치: 대상 프로젝트에서
+#   ln -sf ../../.claude/hooks/git/commit-msg .git/hooks/commit-msg
+#   chmod +x .claude/hooks/git/commit-msg
+# 또는 husky 사용 시 .husky/commit-msg 에서 이 스크립트를 호출.
+#
+# 규칙(CONVENTIONS.md):
+#   - 형식: <type>: 제목
+#   - type 고정 세트: feat fix docs style refactor perf test build ci chore revert
+#   - 제목 ≤ 50자
+# 위반 시 커밋을 막는다(git 훅은 exit 1 = 차단).
+
+msg_file="$1"
+# 첫 줄(제목)만 검사. 주석/빈 줄 스킵.
+subject="$(grep -vE '^\s*#' "$msg_file" | grep -vE '^\s*$' | head -1)"
+
+TYPES="feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert"
+
+# merge/revert 자동 커밋은 통과
+case "$subject" in
+  "Merge "*|"Revert "*) exit 0 ;;
+esac
+
+if ! printf '%s' "$subject" | grep -qE "^(${TYPES})(\([a-z0-9/-]+\))?: .+"; then
+  echo "❌ 커밋 메시지 형식 위반:" >&2
+  echo "   \"$subject\"" >&2
+  echo "   형식: <type>: 제목  (예: feat: 로그인 버튼 추가)" >&2
+  echo "   허용 타입: feat fix docs style refactor perf test build ci chore revert" >&2
+  exit 1
+fi
+
+# 제목 길이(<type>: 제외한 제목 부분) 50자 검사 — 한글은 그대로 문자 수 기준
+subject_text="$(printf '%s' "$subject" | sed -E "s/^(${TYPES})(\([a-z0-9/-]+\))?: //")"
+len=$(printf '%s' "$subject_text" | wc -m | tr -d ' ')
+if [ "$len" -gt 50 ]; then
+  echo "⚠️  제목이 너무 깁니다(${len}자 > 50자): $subject_text" >&2
+  echo "   제목은 50자 이내로 요약하고 상세는 본문에 적으세요." >&2
+  exit 1
+fi
+
+exit 0

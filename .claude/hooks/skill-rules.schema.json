@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Skill Rules",
+  "description": "skill-eval.js 가 스킬을 추천할 때 사용하는 트리거 규칙. skills 의 각 키는 반드시 실제 skills/<이름>/SKILL.md 폴더명 및 frontmatter name 과 일치해야 한다.",
+  "type": "object",
+  "required": ["version", "skills"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "version": { "type": "string" },
+    "config": {
+      "type": "object",
+      "properties": {
+        "minConfidenceScore": { "type": "number", "minimum": 0 },
+        "maxSkillsToShow": { "type": "number", "minimum": 1 }
+      },
+      "additionalProperties": false
+    },
+    "directoryMappings": {
+      "type": "object",
+      "description": "디렉토리 경로 → 스킬 이름. 값은 반드시 skills 에 존재하는 키여야 한다.",
+      "additionalProperties": { "type": "string" }
+    },
+    "skills": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["triggers"],
+        "properties": {
+          "triggers": {
+            "type": "object",
+            "properties": {
+              "keywords": { "type": "array", "items": { "type": "string" } },
+              "keywordPatterns": { "type": "array", "items": { "type": "string" } },
+              "pathPatterns": { "type": "array", "items": { "type": "string" } },
+              "intentPatterns": { "type": "array", "items": { "type": "string" } }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

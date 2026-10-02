@@ -1,0 +1,62 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.5.14/schema.json",
+  // 생성물·산출물 제외 (routeTree.gen.ts 는 TanStack Router 자동 생성물).
+  // node_modules 는 Biome 가 기본 무시. .gitignore 연동(vcs.useIgnoreFile)은
+  // .gitignore 없으면 Biome 가 에러로 죽어서, 이식성 위해 files.includes 로 직접 제외한다.
+  "files": {
+    "includes": [
+      "**",
+      "!**/.claude",
+      "!**/routeTree.gen.ts",
+      "!**/styles.css",
+      "!**/globals.css",
+      "!**/dist",
+      "!**/build",
+      "!**/coverage",
+      "!**/.output",
+      "!**/.vinxi",
+      "!**/.nitro",
+      "!**/.tanstack",
+      "!**/.vite",
+      "!**/playwright-report",
+      "!**/test-results"
+    ]
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 100
+  },
+  // Biome는 최신 기준. linter는 enabled만 두면 recommended 룰이 기본 적용된다.
+  // rules를 명시 안 하는 이유: recommended 필드는 2.5에서 deprecated, preset은 신버전 전용 →
+  // 생략하면 버전 올려도 경고·에러 없이 recommended가 유지된다.
+  "linter": {
+    "enabled": true
+  },
+  // import 자동 정리 — 그룹 순서: 외부 패키지 → @/ alias → 상대경로 (CONVENTIONS §3과 동일)
+  "assist": {
+    "actions": {
+      "source": {
+        "organizeImports": {
+          "level": "on",
+          "options": {
+            "groups": [
+              [":NODE:", ":BUN:", ":PACKAGE:", ":URL:"],
+              ":BLANK_LINE:",
+              ":ALIAS:",
+              ":BLANK_LINE:",
+              ":PATH:"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "double",
+      "semicolons": "asNeeded"
+    }
+  }
+}

@@ -1,0 +1,384 @@
+{
+  "$schema": "./skill-rules.schema.json",
+  "version": "2.0",
+  "config": {
+    "minConfidenceScore": 3,
+    "maxSkillsToShow": 5
+  },
+  "directoryMappings": {
+    "src/shared/ui": "shadcn-ui"
+  },
+  "skills": {
+    "project-conventions": {
+      "triggers": {
+        "keywords": [
+          "컨벤션",
+          "네이밍",
+          "파일명",
+          "폴더 구조",
+          "디렉토리 구조",
+          "브랜치",
+          "커밋 타입",
+          "convention",
+          "naming",
+          "structure"
+        ],
+        "keywordPatterns": [
+          "어디에\\s*(만들|둬|위치|넣)",
+          "(폴더|파일|디렉토리)\\s*(구조|이름|명명)"
+        ],
+        "intentPatterns": [
+          "새\\s*(파일|폴더|컴포넌트|기능).*(만들|생성|추가)"
+        ]
+      }
+    },
+    "component-design": {
+      "triggers": {
+        "keywords": [
+          "컴포넌트",
+          "component",
+          "모달",
+          "props",
+          "분리",
+          "설계"
+        ],
+        "keywordPatterns": [
+          "(컴포넌트|모달).*(만들|생성|추가|리팩터|수정)"
+        ],
+        "pathPatterns": [
+          "**/features/**/components/**",
+          "**/components/**"
+        ],
+        "intentPatterns": [
+          "(만들|생성|추가|리팩터).*컴포넌트"
+        ]
+      }
+    },
+    "react-query": {
+      "triggers": {
+        "keywords": [
+          "usequery",
+          "usemutation",
+          "queryoptions",
+          "queryclient",
+          "invalidate",
+          "쿼리 키",
+          "query key",
+          "캐시",
+          "패칭",
+          "tanstack",
+          "react query"
+        ],
+        "keywordPatterns": [
+          "(캐시|쿼리|데이터)\\s*(무효화|패칭|갱신|invalidate)"
+        ],
+        "pathPatterns": [
+          "**/queries/**",
+          "**/api/**"
+        ],
+        "intentPatterns": [
+          "(서버\\s*상태|데이터\\s*패칭).*(추가|구현|작성)"
+        ]
+      }
+    },
+    "loading-error": {
+      "triggers": {
+        "keywords": [
+          "로딩",
+          "에러",
+          "loading",
+          "error",
+          "suspense",
+          "skeleton",
+          "스켈레톤",
+          "error boundary",
+          "빈 상태",
+          "empty state",
+          "재시도"
+        ],
+        "keywordPatterns": [
+          "(로딩|에러|빈)\\s*(상태|처리|화면|ui)",
+          "\\b(pendingComponent|errorComponent)\\b"
+        ]
+      }
+    },
+    "security": {
+      "triggers": {
+        "keywords": [
+          "보안",
+          "security",
+          "xss",
+          "csrf",
+          "sanitize",
+          "dangerouslysetinnerhtml",
+          "토큰 저장",
+          "인증",
+          "시크릿",
+          "secret",
+          "env 노출",
+          "취약점"
+        ],
+        "keywordPatterns": [
+          "(토큰|인증정보).*(저장|보관)",
+          "(보안|취약).*(점검|검토|처리)"
+        ]
+      }
+    },
+    "state-management": {
+      "triggers": {
+        "keywords": [
+          "상태관리",
+          "상태 관리",
+          "state management",
+          "nanostores",
+          "zustand",
+          "jotai",
+          "context",
+          "전역 상태",
+          "global state",
+          "스토어",
+          "store",
+          "atom"
+        ],
+        "keywordPatterns": [
+          "(전역|공유)\\s*상태",
+          "(nanostores|zustand|jotai|context).*(써|쓸까|선택|사용)"
+        ]
+      }
+    },
+    "web-accessibility": {
+      "triggers": {
+        "keywords": [
+          "접근성",
+          "a11y",
+          "accessibility",
+          "aria",
+          "키보드",
+          "스크린리더",
+          "wcag",
+          "kwcag",
+          "role",
+          "포커스",
+          "focus trap"
+        ],
+        "keywordPatterns": [
+          "(탭|드롭다운|모달|메뉴|슬라이더).*(접근성|aria|키보드)"
+        ]
+      }
+    },
+    "tanstack-form": {
+      "triggers": {
+        "keywords": [
+          "폼",
+          "form",
+          "zod",
+          "유효성",
+          "validation",
+          "useform",
+          "필드 에러",
+          "입력 검증",
+          "스키마"
+        ],
+        "keywordPatterns": [
+          "폼.*(만들|검증|유효성|추가)",
+          "(유효성|입력)\\s*검증"
+        ]
+      }
+    },
+    "design-tokens": {
+      "triggers": {
+        "keywords": [
+          "디자인 토큰",
+          "design token",
+          "토큰",
+          "@theme",
+          "tailwind",
+          "테마",
+          "색상 토큰",
+          "radius",
+          "타이포"
+        ],
+        "keywordPatterns": [
+          "(색상|간격|테마).*(토큰|정의)"
+        ],
+        "pathPatterns": [
+          "**/styles/**",
+          "**/globals.css",
+          "**/tokens.css"
+        ]
+      }
+    },
+    "shadcn-ui": {
+      "triggers": {
+        "keywords": [
+          "shadcn",
+          "cva",
+          "variant",
+          "compound variant",
+          "cn(",
+          "tailwind-merge",
+          "twmerge",
+          "다크모드",
+          "dark mode",
+          "foreground",
+          "버튼",
+          "다이얼로그"
+        ],
+        "keywordPatterns": [
+          "\\bshadcn\\b",
+          "\\bcva\\b",
+          "compound\\s*variants?",
+          "\\bcn\\("
+        ],
+        "pathPatterns": [
+          "**/shared/ui/**",
+          "**/components/ui/**"
+        ],
+        "intentPatterns": [
+          "(shadcn|variant|버튼|다이얼로그).*(퍼블리|만들|추가|수정|스타일)"
+        ]
+      }
+    },
+    "systematic-debugging": {
+      "triggers": {
+        "keywords": [
+          "디버깅",
+          "debug",
+          "버그",
+          "bug",
+          "재현",
+          "reproduce",
+          "근본 원인",
+          "root cause",
+          "스택 트레이스",
+          "stack trace",
+          "테스트 실패",
+          "왜 안"
+        ],
+        "keywordPatterns": [
+          "(버그|bug|에러|error).*(원인|추적|디버)",
+          "(테스트|test).*(실패|failing|깨졌|깨진)"
+        ],
+        "intentPatterns": [
+          "(왜|why).*(안\\s*(돼|되|됨)|실패|failing|broken)",
+          "(버그|이슈|문제).*(고쳐|수정|찾|조사)"
+        ]
+      }
+    },
+    "rendering-strategy": {
+      "triggers": {
+        "keywords": [
+          "렌더링",
+          "rendering",
+          "ssr",
+          "spa",
+          "서버 렌더링",
+          "hydration",
+          "loader",
+          "prefetch",
+          "createserverfn",
+          "서버 함수"
+        ],
+        "keywordPatterns": [
+          "\\b(ssr|spa)\\b",
+          "\\b(defaultSsr|ensureQueryData|createServerFn)\\b"
+        ],
+        "pathPatterns": [
+          "**/routes/**",
+          "**/router.tsx",
+          "**/start.tsx"
+        ],
+        "intentPatterns": [
+          "(새|만들|추가).*(페이지|라우트|route)",
+          "(ssr|서버\\s*렌더|prefetch).*(쓸까|필요|적용)"
+        ]
+      }
+    },
+    "testing": {
+      "triggers": {
+        "keywords": [
+          "테스트",
+          "test",
+          "vitest",
+          "playwright",
+          "e2e",
+          "단위 테스트",
+          "커버리지",
+          "testing-library",
+          "msw",
+          "모킹"
+        ],
+        "keywordPatterns": [
+          "(테스트|test).*(작성|추가|짜|만들)",
+          "\\b(vitest|playwright)\\b"
+        ],
+        "pathPatterns": [
+          "**/*.test.*",
+          "**/*.spec.*",
+          "**/tests/**",
+          "**/e2e/**"
+        ],
+        "intentPatterns": [
+          "(테스트|test).*(작성|추가|만들|커버)"
+        ]
+      }
+    },
+    "auth": {
+      "triggers": {
+        "keywords": [
+          "인증",
+          "auth",
+          "로그인",
+          "login",
+          "로그아웃",
+          "logout",
+          "세션",
+          "session",
+          "라우트 가드",
+          "route guard",
+          "보호 라우트",
+          "beforeload",
+          "권한"
+        ],
+        "keywordPatterns": [
+          "(로그인|인증|세션|권한).*(가드|보호|리다이렉트|처리|확인)",
+          "\\b(beforeLoad|_authed)\\b"
+        ],
+        "pathPatterns": [
+          "**/routes/_authed*",
+          "**/auth/**"
+        ],
+        "intentPatterns": [
+          "(로그인|인증|보호\\s*라우트|권한).*(구현|추가|만들|처리)"
+        ]
+      }
+    },
+    "api-layer": {
+      "triggers": {
+        "keywords": [
+          "api",
+          "fetch",
+          "base url",
+          "엔드포인트",
+          "endpoint",
+          "401",
+          "에러 정규화",
+          "api client",
+          "apifetch",
+          "api 함수"
+        ],
+        "keywordPatterns": [
+          "(api|fetch).*(레이어|클라이언트|호출|함수|에러|정규화)",
+          "\\b(apiFetch|credentials)\\b"
+        ],
+        "pathPatterns": [
+          "**/api/**",
+          "**/api-client*"
+        ],
+        "intentPatterns": [
+          "(api|fetch).*(작성|추가|만들|구현)"
+        ]
+      }
+    }
+  }
+}

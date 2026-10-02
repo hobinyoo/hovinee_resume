@@ -1,0 +1,5 @@
+# 로컬 전용 설정 (개인 오버라이드·권한 등)
+settings.local.json
+
+# 작업별 임시 컨텍스트
+tasks/

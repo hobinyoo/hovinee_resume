@@ -1,0 +1,13 @@
+{
+  "$comment": "이 파일을 settings.local.json 으로 복사해 개인/로컬 설정을 넣으세요. settings.local.json 은 .gitignore 됩니다.",
+  "permissions": {
+    "allow": [],
+    "deny": []
+  },
+  "env": {
+    "$comment": "컨벤션 위반 시 편집을 '차단'하려면 아래를 1로. 기본은 경고(비차단).",
+    "CLAUDE_NAMING_BLOCK": "0",
+    "$comment_git_host": "git 호스트 자동 감지(GitHub gh/PR · GitLab glab/MR)가 애매하면 지정: github | gitlab. 빈 값이면 자동 감지.",
+    "CLAUDE_GIT_HOST": ""
+  }
+}

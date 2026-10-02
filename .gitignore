@@ -1,0 +1,42 @@
+node_modules
+dist
+dist-ssr
+*.local
+.nitro
+.tanstack
+.wrangler
+.output
+.vinxi
+.vite
+*.tsbuildinfo
+__unconfig*
+todos.json
+
+# env
+.env
+.env.*
+!.env.example
+
+# macOS
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# editors
+.idea/
+*.swp
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# logs, tests, coverage
+*.log
+coverage/
+playwright-report/
+test-results/
