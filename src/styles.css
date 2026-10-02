@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
 
@@ -7,7 +7,8 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
-  디자인 토큰 출처: Notion 디자인 시스템 분석 스펙(사용자 제공, 마케팅 사이트 기준).
+  디자인 토큰 출처: DESIGN.md(Pinterest 디자인 분석, `npx getdesign@latest add pinterest`). 단일 레드(--color-brand)는 CTA·활성 탭·워드마크에만 쓰고, 라운드는 16px(md)/32px(lg)/pill 세 값만 쓴다. Pin Sans 대체로 Inter + 한글은 Noto Sans KR. 아래 Notion 관련 설명은 이전 토큰 시절 기록이다.
+
   - NotionInter는 사내 튜닝판이라 웹에서 못 불러옴 → 처음엔 스펙이 명시한 대체 폰트(Inter)를
     썼는데, 한글 본문 위주 사이트라 Inter의 x-height가 커 보여서(같은 px여도 Notion 실제 폰트보다
     커 보임) Noto Sans KR로 교체함 + 스펙이 지정한 음수 letter-spacing은 그대로 유지.
@@ -27,8 +28,8 @@
 */
 
 :root {
-  --color-notion-blue: #0075de;
-  --color-notion-blue-active: #005bab;
+  --color-brand: #e60023; /* Pinterest Red: CTA·활성 탭·워드마크 전용 */
+  --color-brand-active: #cc001f;
   --color-notion-indigo: #213183;
 
   /* 스티커(장식 전용) 팔레트 */
@@ -42,58 +43,58 @@
   --color-sticker-green: #1aae39;
   --color-sticker-brown: #523410;
 
-  --background: #f6f5f4; /* canvas-soft — Notion의 "warm paper" 캔버스 */
-  --foreground: #37352f; /* ink — 순수 검정(#000)이 사이드바의 회색 텍스트 대비 너무 진해서,
-    Notion 실제 앱 본문 텍스트 색(따뜻한 다크그레이)으로 완화 */
+  --background: #fbfbf9; /* surface-soft */
+  --foreground: #000000; /* ink */
   --card: #ffffff; /* surface */
-  --card-foreground: #37352f;
+  --card-foreground: #000000;
   --popover: #ffffff;
-  --popover-foreground: #37352f;
-  --primary: #0075de;
+  --popover-foreground: #000000;
+  --primary: #e60023;
   --primary-foreground: #ffffff;
-  --secondary: #ffffff;
-  --secondary-foreground: #37352f;
-  --muted: #f6f5f4;
-  --muted-foreground: #615d59; /* ink-muted */
-  --accent: #f6f5f4;
-  --accent-foreground: #37352f;
-  --destructive: #c0362c;
+  --secondary: #e5e5e0;
+  --secondary-foreground: #000000;
+  --muted: #f6f6f3;
+  --muted-foreground: #62625b; /* mute */
+  --accent: #f6f6f3;
+  --accent-foreground: #000000;
+  --destructive: #9e0a0a;
   --destructive-foreground: #ffffff;
-  --border: #e6e6e6; /* hairline */
-  --input: #e6e6e6;
-  --ring: #0075de;
-  --radius: 0.5rem; /* rounded.md, 8px */
+  --border: #dadad3; /* hairline */
+  --input: #dadad3;
+  --ring: #435ee5; /* focus-outer */
+  --radius: 1rem; /* rounded.md, 16px */
 
   /* 헤더 높이(사이드바 top 오프셋과 맞춤) / 사이드바 폭(드래그로 조절, JS가 이 값을 갱신) */
-  --header-height: 4.25rem;
+  --header-height: 4rem;
   --sidebar-width: 16rem;
 }
 
 .dark {
+  --link: #ffffff;
   /* Notion 마케팅 스펙엔 다크모드가 없어서, Notion 앱 실제 다크 테마로 보강함 */
-  --background: #191919;
-  --foreground: #e9e9e7;
-  --card: #2f2f2f;
-  --card-foreground: #e9e9e7;
-  --popover: #2f2f2f;
-  --popover-foreground: #e9e9e7;
-  --primary: #35a2ff;
-  --primary-foreground: #0b1520;
-  --secondary: #2f2f2f;
-  --secondary-foreground: #e9e9e7;
-  --muted: #202020;
-  --muted-foreground: #999693;
-  --accent: #262626;
-  --accent-foreground: #e9e9e7;
-  --destructive: #e0655c;
+  --background: #1a1a17;
+  --foreground: #ffffff;
+  --card: #262622;
+  --card-foreground: #ffffff;
+  --popover: #262622;
+  --popover-foreground: #ffffff;
+  --primary: #e60023;
+  --primary-foreground: #ffffff;
+  --secondary: #3a3a35;
+  --secondary-foreground: #ffffff;
+  --muted: #30302c;
+  --muted-foreground: #b4b4ad;
+  --accent: #30302c;
+  --accent-foreground: #ffffff;
+  --destructive: #ff6b6b;
   --destructive-foreground: #191919;
-  --border: #333333;
-  --input: #333333;
-  --ring: #35a2ff;
+  --border: #3f3f3a;
+  --input: #3f3f3a;
+  --ring: #617bff;
 }
 
 @theme inline {
-  --font-sans: 'Noto Sans KR', -apple-system, system-ui, 'Segoe UI', Helvetica, Arial, sans-serif;
+  --font-sans: 'Inter', 'Noto Sans KR', -apple-system, system-ui, 'Segoe UI', Helvetica, Arial, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 
   --color-background: var(--background);
@@ -116,8 +117,8 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  --color-notion-blue: var(--color-notion-blue);
-  --color-notion-blue-active: var(--color-notion-blue-active);
+  --color-brand: var(--color-brand);
+  --color-brand-active: var(--color-brand-active);
   --color-notion-indigo: var(--color-notion-indigo);
   --color-sticker-sky: var(--color-sticker-sky);
   --color-sticker-purple: var(--color-sticker-purple);
@@ -133,36 +134,36 @@
   --container-article: 52.5rem; /* 840px */
 
   --radius-xs: 0.25rem; /* 4px */
-  --radius-sm: 0.3125rem; /* 5px */
-  --radius-md: 0.5rem; /* 8px */
-  --radius-lg: 0.75rem; /* 12px */
-  --radius-xl: 1rem; /* 16px */
+  --radius-sm: 0.5rem; /* 8px */
+  --radius-md: 1rem; /* 16px: 버튼·입력·카드 */
+  --radius-lg: 2rem; /* 32px: 큰 카드·모달 */
+  --radius-xl: 2rem; /* 32px */
   --radius-pill: 9999px;
 
   /* Notion 스펙 타이포 hierarchy → Tailwind 유틸(text-heading-1, text-title 등) 자동 생성.
      body-md(16px/1.5)는 Tailwind 기본 text-base와 이미 동일해서 별도 토큰 불필요.
      px 고정(rem 아님) — 브라우저 글꼴 확대 설정에 비례해 커지지 않는 트레이드오프를 감수하고
      디자인 스펙 숫자와 그대로 일치시킴(요청에 따름). */
-  --text-heading-1: 40px;
-  --text-heading-1--line-height: 1.1;
-  --text-heading-1--letter-spacing: -1px;
+  --text-heading-1: 44px;
+  --text-heading-1--line-height: 1.15;
+  --text-heading-1--letter-spacing: -0.8px;
   --text-heading-1--font-weight: 700;
-  --text-heading-2: 26px;
-  --text-heading-2--line-height: 1.23;
-  --text-heading-2--letter-spacing: -0.625px;
+  --text-heading-2: 28px;
+  --text-heading-2--line-height: 1.2;
+  --text-heading-2--letter-spacing: -1.2px;
   --text-heading-2--font-weight: 700;
   --text-heading-3: 22px;
   --text-heading-3--line-height: 1.27;
-  --text-heading-3--letter-spacing: -0.25px;
-  --text-heading-3--font-weight: 700;
-  --text-title: 20px;
-  --text-title--line-height: 1.4;
-  --text-title--letter-spacing: -0.125px;
+  --text-heading-3--letter-spacing: 0;
+  --text-heading-3--font-weight: 600;
+  --text-title: 18px;
+  --text-title--line-height: 1.3;
+  --text-title--letter-spacing: 0;
   --text-title--font-weight: 600;
-  --text-body-sm: 15px;
-  --text-body-sm--line-height: 1.33;
-  --text-caption: 14px;
-  --text-caption--line-height: 1.43;
+  --text-body-sm: 16px;
+  --text-body-sm--line-height: 1.5;
+  --text-caption: 13px;
+  --text-caption--line-height: 1.45;
   --text-eyebrow: 12px;
   --text-eyebrow--line-height: 1.33;
   --text-eyebrow--letter-spacing: 0.125px;
@@ -195,13 +196,13 @@ body,
   }
 
   a {
-    color: var(--color-notion-blue);
+    color: var(--link, #211922);
     text-decoration-thickness: 1px;
     text-underline-offset: 2px;
   }
 
   a:hover {
-    color: var(--color-notion-blue-active);
+    color: var(--muted-foreground);
   }
 }
 

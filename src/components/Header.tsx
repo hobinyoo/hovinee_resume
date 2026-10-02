@@ -10,16 +10,17 @@ const NAV_ACTIVE_CLASS = "px-2 py-1.5 text-body-sm text-foreground no-underline"
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-50 h-[var(--header-height)] border-b border-border bg-background">
+    <header className="sticky top-0 z-50 h-[var(--header-height)] border-b border-border bg-card">
       <nav className="page-wrap flex h-full items-center gap-4">
-        <Link to="/" className="text-base font-semibold text-foreground no-underline">
+        <Link to="/" className="text-lg font-bold text-brand no-underline hover:text-brand-active">
           {content.profile.name}
         </Link>
 
         <div className="ml-auto flex items-center gap-2">
           <Link
-            to="/resume"
+            to="/"
             className={NAV_LINK_CLASS}
+            activeOptions={{ exact: true }}
             activeProps={{ className: NAV_ACTIVE_CLASS }}
           >
             이력서

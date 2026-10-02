@@ -22,7 +22,7 @@ export function ImageGallery({ images, wide }: ImageGalleryProps) {
               <button
                 type="button"
                 onClick={() => setOpen(image)}
-                className="block w-full cursor-zoom-in overflow-hidden rounded-md border border-border bg-card p-0"
+                className="block w-full cursor-zoom-in overflow-hidden rounded-md border-0 bg-muted p-0"
               >
                 <img src={resolveImage(image.src) ?? ""} alt={image.cap} className="block w-full" />
               </button>

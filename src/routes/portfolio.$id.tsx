@@ -82,7 +82,7 @@ function ProjectDetail() {
             className={cn(
               "shrink-0 border-b-[1.6px] px-1 py-3 text-body-sm no-underline",
               section.id === activeId
-                ? "border-notion-blue font-bold text-foreground"
+                ? "border-brand font-bold text-foreground"
                 : "border-transparent text-muted-foreground hover:text-foreground",
             )}
           >
@@ -92,12 +92,12 @@ function ProjectDetail() {
       </nav>
 
       <div className="rounded-b-xl bg-card px-[74px] pt-6 pb-[74px] max-md:px-5">
-        <Link to="/resume" hash="portfolio" className="text-body-sm no-underline">
-          ← 이력서 · 포트폴리오로 돌아가기
+        <Link to="/portfolio" className="text-body-sm no-underline">
+          ← 포트폴리오 목록으로 돌아가기
         </Link>
 
         <section id="summary" className={cn(SCROLL_MARGIN, "pt-6")}>
-          <p className="mb-2 text-eyebrow text-notion-blue uppercase">{project.tag}</p>
+          <p className="mb-2 text-eyebrow text-muted-foreground uppercase">{project.tag}</p>
           <h1 className="m-0 mb-3 text-heading-2 text-foreground">{project.title}</h1>
           <p className="m-0 mb-6 text-body-sm text-muted-foreground">
             {project.client} · {project.period}
@@ -117,7 +117,7 @@ function ProjectDetail() {
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
               {project.stats.map(([value, label]) => (
                 <div key={value} className="rounded-md border border-border bg-muted p-4">
-                  <p className="m-0 text-title font-bold text-notion-blue">{value}</p>
+                  <p className="m-0 text-title font-bold text-foreground">{value}</p>
                   <p className="m-0 mt-1 text-caption text-muted-foreground">{label}</p>
                 </div>
               ))}
@@ -147,7 +147,7 @@ function ProjectDetail() {
             <ol className="m-0 flex list-none flex-col gap-3 p-0">
               {project.flow.steps.map(([step, desc], stepIndex) => (
                 <li key={step} className="flex gap-3 text-body-sm">
-                  <span className="flex size-6 shrink-0 items-center justify-center rounded-pill bg-notion-blue text-caption font-bold text-white">
+                  <span className="flex size-6 shrink-0 items-center justify-center rounded-pill bg-foreground text-caption font-bold text-background">
                     {stepIndex + 1}
                   </span>
                   <span className="text-foreground">
@@ -170,7 +170,7 @@ function ProjectDetail() {
                   className="border-b border-border pb-8 last:border-0 last:pb-0"
                 >
                   <p className="m-0 mb-3 text-title text-foreground">
-                    <span className="mr-2 text-notion-blue">
+                    <span className="mr-2 text-muted-foreground">
                       {String(problemIndex + 1).padStart(2, "0")}
                     </span>
                     {problem.t}
@@ -180,7 +180,7 @@ function ProjectDetail() {
                     {problem.p}
                   </p>
                   <p className="m-0 text-body-sm text-foreground">
-                    <span className="mr-2 font-bold text-notion-blue">해결</span>
+                    <span className="mr-2 font-bold text-foreground">해결</span>
                     {problem.s}
                   </p>
                 </div>

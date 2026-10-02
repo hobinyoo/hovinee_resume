@@ -127,7 +127,7 @@ function TreeItem({
             className={cn(
               "block flex-1 truncate rounded-sm px-1.5 py-0.5 text-[14px] no-underline transition-colors",
               isActive
-                ? "bg-notion-blue/10 font-medium text-notion-blue"
+                ? "bg-brand/10 font-medium text-brand"
                 : "text-muted-foreground hover:bg-muted hover:text-foreground",
             )}
           >
@@ -242,7 +242,7 @@ export function BlogSidebar() {
         role="separator"
         aria-orientation="vertical"
         aria-label="사이드바 폭 조절"
-        className="absolute top-0 right-0 hidden h-full w-1 cursor-col-resize touch-none select-none hover:bg-notion-blue/30 active:bg-notion-blue/50 md:block"
+        className="absolute top-0 right-0 hidden h-full w-1 cursor-col-resize touch-none select-none hover:bg-brand/30 active:bg-brand/50 md:block"
       />
     </nav>
   )

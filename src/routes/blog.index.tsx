@@ -36,7 +36,7 @@ function PostListPage() {
 
   return (
     <section className="mx-auto max-w-article">
-      <p className="mb-2 text-eyebrow text-notion-blue uppercase">Tech Blog</p>
+      <p className="mb-2 text-eyebrow text-muted-foreground uppercase">Tech Blog</p>
       <h1 className="m-0 mb-2 text-heading-1 text-foreground">기록해둔 글들</h1>
       <p className="mb-8 text-body-sm text-muted-foreground">
         Notion에 정리한 학습 기록과 회고를 옮겨온 공간입니다.

@@ -8,7 +8,7 @@ function DefaultNotFound() {
   return (
     <div className="page-wrap py-20 text-center">
       <p className="mb-4 text-muted-foreground">존재하지 않는 페이지예요.</p>
-      <Link to="/" className="text-notion-blue">
+      <Link to="/" className="text-brand">
         홈으로 돌아가기
       </Link>
     </div>

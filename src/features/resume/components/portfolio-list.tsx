@@ -32,7 +32,7 @@ export function PortfolioList() {
                           key={value}
                           className="rounded-pill border border-border bg-muted px-3 py-1 text-caption text-foreground"
                         >
-                          <span className="font-bold text-notion-blue">{value}</span> {label}
+                          <span className="font-bold text-foreground">{value}</span> {label}
                         </span>
                       ))}
                     </div>
@@ -40,7 +40,7 @@ export function PortfolioList() {
                   <Link
                     to="/portfolio/$id"
                     params={{ id: project.id }}
-                    className="text-body-sm font-semibold"
+                    className="inline-flex h-10 items-center rounded-md bg-secondary px-3.5 text-body-sm font-bold text-secondary-foreground no-underline hover:bg-border"
                   >
                     상세 보기
                   </Link>

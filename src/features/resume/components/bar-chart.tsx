@@ -20,7 +20,7 @@ export function BarChart({ chart }: BarChartProps) {
               className={
                 index < chart.split
                   ? "w-full rounded-t bg-border"
-                  : "w-full rounded-t bg-notion-blue"
+                  : "w-full rounded-t bg-foreground"
               }
               style={{ height: `${(value / max) * 100}%` }}
             />
@@ -34,7 +34,7 @@ export function BarChart({ chart }: BarChartProps) {
           {chart.before}
         </span>
         <span>
-          <span className="mr-1 inline-block size-2 rounded-sm bg-notion-blue" />
+          <span className="mr-1 inline-block size-2 rounded-sm bg-foreground" />
           {chart.after}
         </span>
       </p>
