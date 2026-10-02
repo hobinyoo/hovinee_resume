@@ -3,9 +3,10 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "predev": "node scripts/export-static-data.mjs",
     "dev": "vite dev --port 3000",
     "generate-routes": "tsr generate",
-    "build": "vite build",
+    "build": "node scripts/export-static-data.mjs && vite build",
     "preview": "vite preview",
     "format": "biome format --write",
     "lint": "biome lint",
