@@ -76,5 +76,11 @@ export type ResumeContent = {
     certs: Array<string>
     others: Array<string>
     intro: Array<string>
+    techStack: Array<[label: string, chips: Array<string>]>
+    careerHighlights: Record<string, Array<string>>
+    projectTools: Record<string, string>
+    mainProjectIds: Array<string>
+    otherProjectIds: Array<string>
+    language: string
   }
 }

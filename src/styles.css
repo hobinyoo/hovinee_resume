@@ -183,6 +183,7 @@ body,
 @layer base {
   body {
     margin: 0;
+    word-break: keep-all; /* 한글이 단어 중간에서 끊기지 않게 (모바일 가독성) */
     color: var(--foreground);
     font-family: var(--font-sans);
     background-color: var(--background);
